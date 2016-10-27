@@ -1,0 +1,187 @@
+html {
+	box-sizing: border-box;
+	cursor: default;
+	pointer-events: none;
+}
+*, *:before, *:after {
+	box-sizing: inherit;
+}
+
+body {
+	width: 100vw;
+	height: 100vw;
+	overflow: hidden;
+	color: white;
+	font-family: Verdana, Arial;
+	background-color: black;
+	pointer-events: none;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	font-size: 14px;
+}
+
+h1, h2, h3 {
+	margin-top: 20px;
+	margin-bottom: 5px;
+}
+
+canvas {
+	background-color: black;
+}
+
+button, input, canvas {
+	pointer-events: all;
+}
+
+.disabled {
+	opacity: 0.3;
+}
+
+.block {
+	display: block;
+	width: 100%;
+}
+
+.red {
+	color: red;
+}
+
+.white {
+	color: white;
+}
+
+#container {
+	position: absolute;
+	top: 0;
+	right: 0;
+	left: 0;
+	bottom: 0;
+	padding: 10px;
+	pointer-events: none;
+}
+
+#container * {
+	pointer-events: all;
+}
+
+#titleBar {
+	background-color: #305f6d;
+	box-shadow: 0 5px 5px rgba(0, 0, 0, 0.5);
+	padding: 10px;
+	position: absolute;
+
+	top: 0;
+	left: 0;
+	right: 0;
+	height: 75px;
+	z-index: 1;
+}
+
+#titleBar > h1 {
+	margin: 10px;
+	display: inline-block;
+}
+
+#titleBar .floatRight {
+	height: 100%;
+}
+
+#titleBar .button {
+	padding: 10px;
+	display: inline-block;
+	background-color: #1b373f;
+	color: white;
+	text-decoration: none;
+	pointer-events: all;
+	border-radius: 10px;
+	margin-top: 10px;
+}
+
+#titleBar .button:hover {
+	background-color: #234650;
+}
+
+#titleBar .button.selected {
+	background-color: #234650;
+}
+
+#infoBar {
+	position: absolute;
+	top: 75px;
+	left: 0;
+	right: 0;
+	z-index: 1;
+	box-shadow: 0 5px 5px rgba(0, 0, 0, 0.5);
+	padding: 10px;
+	color: white;
+	background-color: #393939;
+}
+
+#infoBar > div {
+	display: inline-block;
+}
+
+#infoBar > .floatLeft > span {
+	display: inline-block;
+	margin-right: 20px;
+}
+
+#infoBar > .floatRight > span {
+	display: inline-block;
+	margin-left: 20px;
+}
+
+#inspector {
+	position: absolute;
+	display: inline-block;
+	top: 115px;
+	right: 0;
+	bottom: 0;
+	width: 320px;
+	overflow-y: scroll;
+	overflow-x: hidden;
+	padding: 10px 10px 10px 10px;
+	background-color: #606060;
+	box-shadow: -5px 0 5px rgba(0, 0, 0, 0.5);
+	pointer-events: all;
+}
+
+#inspector div {
+	margin-bottom: 5px;
+}
+
+#inspector div div {
+	display: inline-block;
+	float: right;
+}
+
+#graphCanvas {
+
+}
+
+.floatRight {
+	float: right;
+}
+
+#simCanvas {
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	z-index: -1;
+}
+
+#about {
+	position: absolute;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	margin-top: 75px;
+	display: none;
+	padding: 20px 160px 20px 160px;
+	line-height: 175%;
+	overflow-y: scroll;
+	overflow-x: hidden;
+	background-color: #393939;
+}

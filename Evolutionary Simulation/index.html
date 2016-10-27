@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link type="text/css" rel="stylesheet" href="css/style.css"/>
+		<script src="js/jquery.js"></script>
+		<script src="js/utils.js"></script>
+		<script src="js/neuralNet.js"></script>
+		<script src="js/geneticAlg.js"></script>
+		<script src="js/canvas.js"></script>
+		<script src="js/settings.js"></script>
+		<script src="js/script.js"></script>
+	</head>
+	<body>
+		<div id="container">
+			<div id="titleBar">
+				<h1>SmartBots - Evolutionary Simulation</h1>
+				<div class="floatRight">
+					<a id="simulationButton" class="button selected" href="#">Simulation</a>
+					<a id="aboutButton" class="button" href="#">About</a>
+				</div>
+			</div>
+			<div id="simulation">
+				<div id="infoBar">
+					<div class="floatLeft">
+						<span>Generation: <span id="generation"></span></span>
+						<span>Time: <span id="updateFrame"></span></span>
+					</div>
+					<div class="floatRight">
+						<button id="saveButton">Save</button>
+						<button id="loadButton">Load</button>
+						<button id="restartButton">Restart</button>
+						<button id="pauseButton">Pause</button>
+						<button id="drawButton">Stop drawing</button>
+						<span>Advance generation <input id="advanceCheck" type="checkbox" checked></span>
+						<span>Speed: <input type="range" min="0" max="100" value="100" id="timeScale"></span>
+					</div>
+				</div>
+				<canvas id="simCanvas"></canvas>
+				<div id="inspector">
+					<h3>This generation</h3>
+					<div>Alive agents: <div id="aliveAgents"></div></div>
+					<div>Dead agents: <div id="deadAgents"></div></div>
+					<div>Total food eaten: <div id="totalFood"></div></div>
+					<div>Average food eaten: <div id="averageFood"></div></div>
+					<div>Best food eaten: <div id="bestFood"></div></div>
+					<button id="bestAgentButton">Select best agent</button>
+					<br/><br/>
+					<hr/>
+
+					<h3>Selected agent</h3>
+					<div>Fullness: <div id="agentFullness"></div></div>
+					<div>Food eaten: <div id="agentFood"></div></div>
+					<div><div class="block">Network:</div>
+						<canvas id="networkCanvas"></canvas><br/>
+					</div>
+					<br/>
+					<hr/>
+
+					<h3>Population progress</h3>
+					Amount of food collected by the best agent (<span class="red">red</span>) and on average (<span class="white">white</span>) over time<br/><br/>
+					<canvas id="graphCanvas"></canvas>
+				</div>
+			</div>
+			<div id="about">
+				<h2>Overview</h2>
+				<p>
+					This is a simulation of a population of virtual agents (you could imagine them as living cells,
+					animals, robots etc.), which compete for survival. Each agent must eat food to avoid starving, but
+					there is a limited amount of food available at any time. After a certain amount of time has passed,
+					the simulation will advance to the next generation, in which a new population of agents is created
+					from the combination and mutation of the genetic code of the previous population. The better an
+					agent performs (the more food it collects), the more likely it is to be selected for breeding. This
+					simulates natural selection, and results in the agents of each successive population performing
+					better than the last.
+				</p>
+				<p>
+					At the start of the simulation, most agents show no useful correlation between
+					their senses (their current direction, and the direction to the closest food) and their movements,
+					often resulting in spiral or sporadic paths. As time goes on the agents eventually evolve to track
+					the closest food, actively moving towards it. The intricacies of these behaviours are completely
+					different every time the simulation is run, as they evolve organically from the random initial
+					conditions. For example, later populations tend to develop a predominant direction in which the
+					agents move. This is because the population shares a lot of its genetic code, and because all agents
+					moving in one direction seems to result in each agent coming across more food.
+				</p>
+				<p>
+					<i>Tip: most significant population improvement usually has happened by about generation 50-75, which
+					takes a few minutes to get to at maximum speed with drawing turned off.</i>
+				</p>
+				<h2>Interface</h2>
+				<ul>
+					<li>The world: the main part of the interface shows the simulated world. Blue circles are agents,
+					deep blue circles are elite agents (the best agents from the previous generation which get brought
+					across directly), and green circles are food blobs.</li>
+					<li>Generation: the current generation of the simulation.</li>
+					<li>Time: how long the current generation has run for. Measured in abstract real-time and frame-rate
+						independent units.</li>
+					<li>Save: save the current state of the simulation.</li>
+					<li>Load: load the most recent saved simulation state, if there is one.</li>
+					<li>Restart: restart the simulation as if the page had reloaded.</li>
+					<li>Pause: pause the simulation time.</li>
+					<li>Stop/start drawing: toggle the drawing of the canvas. The simulation runs much faster when
+						drawing is disabled.</li>
+					<li>Advance generation: if checked, the simulation will advance to the next generation when the time
+						runs out.</li>
+					<li>Speed: controls the speed of the simulation, up to 2x faster.</li>
+					<li>Alive agents: the number of agents that are alive.</li>
+					<li>Dead agents: the number of agents that have died this generation.</li>
+					<li>Total food eaten: the total amount of food that has been consumed this generation.</li>
+					<li>Average food eaten: the average amount of food that has been consumed by each agent this
+						generation.</li>
+					<li>Best food eaten: the highest amount of food that has been consumed by any single agent this
+						generation.</li>
+					<li>Select best agent: </li>
+					<li>Fullness: how full the selected agent is. The agent dies when this reaches 0.</li>
+					<li>Food eaten: how much food the selected agent has consumed this generation.</li>
+					<li>Network: the structure of the agents neural network (brain). Each circle is a node that performs
+						some computation, and the lines connecting them carry information between them, influenced by
+						the weight of the line (represented by the thickness and colour of the line). Green circles are
+						inputs, red circles are outputs.</li>
+					<li>Population progress: graphs the average and best food consumed for each generation.</li>
+				</ul>
+				<h2>Controls</h2>
+				<ul>
+					<li>Use the left mouse button to select agents and view their details.</li>
+					<li>Use the arrow keys or drag with the right mouse button to pan the canvas around.</li>
+					<li>Use the mouse wheel to zoom in and out.</li>
+				</ul>
+			</div>
+		</div>
+	</body>
+</html>
